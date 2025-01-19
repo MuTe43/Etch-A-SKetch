@@ -9,7 +9,7 @@ for(let i=0; i<16;i++){
     for(let j=0; j<16;j++){
         const div = document.createElement("div");
         div.classList.add("grid")
-        div.setAttribute("style","background-color:white; opacity:1; ;border:1px solid black; flex:1; width:auto; height:30px;");
+        div.setAttribute("style","background-color:white; opacity:1; border:1px solid black; flex:1;");
         container2.appendChild(div);
     }
 }
@@ -34,20 +34,25 @@ const button = document.querySelector("button");
 
 button.addEventListener("click", () =>{
     const input = document.querySelector("input").value;
-    container.innerHTML="";
-    for(let i=0; i<input;i++){
-        const container2 = document.createElement("div")
-        container2.setAttribute("style",`display:flex; flex:1;`)
-        // gets a porportional height of the total container size to preserve the container original size and not overflow it
-        container2.style.height= container.clientHeight/input + "px" 
-
-        container.appendChild(container2)
-        for(let j=0; j<input;j++){
-            const div = document.createElement("div");
-            div.classList.add("grid")
-            div.setAttribute("style","background-color:white; opacity:1; border:1px solid black; flex:1;");
-            container2.appendChild(div);
-        }
+    if(input<=0 || input>100){
+        alert("You have to enter a value between 1 and 100!")
     }
-    hoverEffect();
+    else{
+        container.innerHTML="";
+        for(let i=0; i<input;i++){
+            const container2 = document.createElement("div")
+            container2.setAttribute("style",`display:flex; flex:1;`)
+            // gets a porportional height of the total container size to preserve the container original size and not overflow it
+            container2.style.height= container.clientHeight/input + "px" 
+
+            container.appendChild(container2)
+            for(let j=0; j<input;j++){
+                const div = document.createElement("div");
+                div.classList.add("grid")
+                div.setAttribute("style","background-color:white; opacity:1; border:1px solid black; flex:1;");
+                container2.appendChild(div);
+            }
+        }
+        hoverEffect();
+}
 })
